@@ -23,9 +23,9 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 		gn.init().then(function() {
 			gn.start(function(data) {
 
-				$('#console .x').text('x: ' + data.dm.gx);
-				$('#console .y').text('y: ' + data.dm.gy);
-				$('#console .z').text('z: ' + data.dm.gz);
+				$('#console .x').html('x: ' + parseInt(data.dm.gx));
+				$('#console .y').html('y: ' + parseInt(data.dm.gy));
+				$('#console .z').html('z: ' + parseInt(data.dm.gz));
 				$('#console .Xaxis').html('X Axis: ' + parseInt(data.do.beta) + '&deg;');
 				$('#console .Yaxis').html('Y Axis: ' + parseInt(data.do.gamma) + '&deg;');
 				$('#console .Zaxis').html('Z Axis: ' + parseInt(data.do.alpha) + '&deg;');				
