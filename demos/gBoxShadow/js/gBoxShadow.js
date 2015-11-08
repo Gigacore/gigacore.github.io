@@ -29,12 +29,14 @@ if (/Android|webOS|Mobile|iPhone|iPad|iPod|BlackBerry|IEMobile/i.test(navigator.
 				$('#console .Xaxis').html('X Axis: ' + parseInt(data.do.beta) + '&deg;');
 				$('#console .Yaxis').html('Y Axis: ' + parseInt(data.do.gamma) + '&deg;');
 				$('#console .Zaxis').html('Z Axis: ' + parseInt(data.do.alpha) + '&deg;');			
-				
+
 				$('.g-enabled').each(function() {
 					if (data.do.alpha > 180 && data.do.beta < 45) {
 						$(this).css('box-shadow', parseInt(data.dm.gy) * 1 + 'px ' + parseInt(data.dm.gx) * 1 + 'px ' + $(this).data('shadow-blur') + 'px ' + $(this).data('shadow-color'));
+						$('#console .gravity-enabled').text('box-shadow: ' + parseInt(data.dm.gy) * 1 + 'px ' + parseInt(data.dm.gx) * 1 + 'px ' + $(this).data('shadow-blur') + 'px ' + $(this).data('shadow-color'));
 					} else {
 						$(this).css('box-shadow', parseInt(data.dm.gx) * 1 + 'px ' + parseInt(-data.dm.gy) * 1 + 'px ' + $(this).data('shadow-blur') + 'px ' + $(this).data('shadow-color'));
+						$('#console .gravity-enabled').text('box-shadow: ' + parseInt(data.dm.gx) * 1 + 'px ' + parseInt(-data.dm.gy) * 1 + 'px ' + $(this).data('shadow-blur') + 'px ' + $(this).data('shadow-color'));
 					}
 				});
 
