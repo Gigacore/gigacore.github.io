@@ -189,8 +189,11 @@
           h('div', { class: 'max-w-2xl mx-auto' }, [
             h('h1', { class: 'text-3xl font-bold text-center mb-2' }, 'Tone', [h('span', { class: 'text-3xl font-bold text-center mb-2 text-blue-600' }, 'AI'), 'chemy']),
             h('h2', { class: 'text-xl font-semibold text-center mb-8' }, 'In-browser textual tone analyzer'),
-            h(ToneMatcher, { theme })
-          ])
+            h(ToneMatcher, { theme }),
+            h('div', {class: 'w-full flex justify-center'}, '', [
+              h('a', {class: 'mt-5 text-sm', href: 'https://github.com/Gigacore/ToneAIchemy'}, 'View code on Github')
+            ])
+          ]),
         ]);
       }
 
