@@ -24,7 +24,7 @@
       color: #333;
       padding: 15px 20px;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       border-bottom: 1px solid #ddd;
       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
@@ -246,13 +246,23 @@
         width: 100%;
       }
     }
+
+    .header > div {
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
   </style>
 </head>
 <body>
   <!-- Header -->
   <header class="header">
-    <h1>Campaigns > Remote Worker in Switzerland</h1>
-    <button class="back-button">Back</button>
+    <div>
+      <h1>Campaigns > Remote Worker in Switzerland</h1>
+      <button class="back-button">Back</button>
+    </div>
   </header>
   
   <div class="container">
