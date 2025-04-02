@@ -147,6 +147,7 @@
       border: 1px solid #ddd;
       border-radius: 4px;
       padding: 15px;
+      min-height: 150px; /* Fixed height to prevent layout shift */
     }
     
     .management-panel {
@@ -173,11 +174,12 @@
       flex: 1;
     }
     
-    /* Stages */
+    /* Improved Stages to make them more clickable */
     .stages {
       display: flex;
       gap: 10px;
       margin: 20px;
+      height: 90px;
     }
     
     .stage {
@@ -185,11 +187,43 @@
       background-color: white;
       border: 1px solid #ddd;
       border-radius: 4px;
-      padding: 10px;
+      padding: 15px 10px;
       text-align: center;
       position: relative;
       cursor: pointer;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: all 0.2s ease;
+      min-height: 80px; /* Fixed height to prevent layout shift */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    /* Clickable styling improvements */
+    .stage:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-color: #aaa;
+    }
+    
+    .stage::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: transparent;
+      transition: background-color 0.2s ease;
+    }
+    
+    .stage:hover::after {
+      background-color: #787a7d;
+    }
+    
+    .stage:hover::before {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
     
     .stage-title {
@@ -205,14 +239,14 @@
     }
     
     .stage.active {
-      background-color: #f5f5f5;
-      border: 2px solid #999;
+      background-color: #fafafa;
+      border: 2px solid #787a7d;
+      box-shadow: 0 4px 8px rgba(49, 51, 54, 0.2);
     }
     
-    .stage.in-progress {
-      background-color: white;
-      border-style: dashed;
-      border-color: #999;
+    .stage.active::after {
+      background-color: #787a7d;
+      height: 4px;
     }
     
     /* Tab content */
@@ -299,28 +333,33 @@
         Campaign Action
       </div>
       
-      <!-- Stages (moved inside the main panel) -->
+      <!-- Improved Stages (moved inside the main panel) -->
       <div class="stages">
         <div class="stage active" onclick="switchTab('receiving-cvs')">
           <div class="stage-title">Receiving CVs</div>
           <div class="stage-count">3</div>
         </div>
+        
         <div class="stage in-progress" onclick="switchTab('tests-evaluated')">
           <div class="stage-title">Tests Evaluated</div>
           <div class="stage-count">1</div>
         </div>
+        
         <div class="stage" onclick="switchTab('video-interview')">
           <div class="stage-title">Video Interview</div>
           <div class="stage-count">0</div>
         </div>
+        
         <div class="stage" onclick="switchTab('selected-for-onsite')">
           <div class="stage-title">Selected for Onsite</div>
           <div class="stage-count">0</div>
         </div>
+        
         <div class="stage" onclick="switchTab('onsite-interview')">
           <div class="stage-title">Onsite Interview</div>
           <div class="stage-count">0</div>
         </div>
+        
         <div class="stage" onclick="switchTab('recruited')">
           <div class="stage-title">Recruited</div>
           <div class="stage-count">0</div>
