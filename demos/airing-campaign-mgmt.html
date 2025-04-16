@@ -1,212 +1,41 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recruitment Dashboard</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
   <style>
-    /* Base styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
     body {
       background-color: #fafafa;
       color: #333;
     }
     
-    /* Header */
     .header {
       background-color: white;
-      color: #333;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       border-bottom: 1px solid #ddd;
       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
     
-    .back-button {
-      background-color: white;
-      color: #333;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 8px 20px;
-      cursor: pointer;
-      font-weight: 500;
-    }
-    
-    /* Container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    
-    /* Entry point panel */
-    .entry-point-panel {
-      background-color: white;
-      border-radius: 4px;
-      padding: 20px;
-      margin-bottom: 20px;
-      border: 1px solid #ddd;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-    
-    .entry-point-title {
-      color: #333;
-      margin-bottom: 15px;
-      font-size: 18px;
-      font-weight: 600;
-    }
-    
-    /* URL input group */
-    .entry-point-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    
-    .url-input-group {
-      display: flex;
-      flex: 1;
-      min-width: 300px;
-      gap: 5px;
-    }
-    
-    .url-input {
-      flex-grow: 1;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 14px;
-      background-color: #f9f9f9;
-    }
-    
-    .url-button {
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 10px;
-      cursor: pointer;
-      color: #555;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .action-button {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      color: #333;
-      font-size: 14px;
-      text-align: center;
-      cursor: pointer;
-      background-color: white;
-    }
-    
-    /* Action panels */
-    .main-panel {
-      background-color: white;
-      border-radius: 4px;
-      margin-bottom: 20px;
-      border: 1px solid #ddd;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-    
-    .panel-header {
-      background-color: #f5f5f5;
-      padding: 15px 20px;
-      font-size: 16px;
-      font-weight: 600;
-      color: #333;
-      border-bottom: 1px solid #ddd;
-    }
-    
-    .panels-container {
-      display: flex;
-      padding: 20px;
-      gap: 20px;
-    }
-    
-    .dynamic-panel {
-      flex: 7;
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 15px;
-      min-height: 150px; /* Fixed height to prevent layout shift */
-    }
-    
-    .management-panel {
-      flex: 3;
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 15px;
-    }
-    
-    .panel-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 15px;
-    }
-    
-    .button-row {
-      display: flex;
-      gap: 10px;
-    }
-    
-    .button-row .action-button {
-      flex: 1;
-    }
-    
-    /* Improved Stages to make them more clickable */
-    .stages {
-      display: flex;
-      gap: 10px;
-      margin: 20px;
+    .stage-card {
       height: 90px;
-    }
-    
-    .stage {
-      flex: 1;
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 15px 10px;
-      text-align: center;
-      position: relative;
-      cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
       transition: all 0.2s ease;
-      min-height: 80px; /* Fixed height to prevent layout shift */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      border: 1px solid #ddd;
     }
     
-    /* Clickable styling improvements */
-    .stage:hover {
+    .stage-card:not(.disabled):hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       border-color: #aaa;
     }
     
-    .stage::after {
+    .stage-card::after {
       content: "";
       position: absolute;
       bottom: 0;
@@ -217,243 +46,322 @@
       transition: background-color 0.2s ease;
     }
     
-    .stage:hover::after {
-      background-color: #787a7d;
+    .stage-card:not(.disabled):hover::after {
+      background-color: #6c757d;
     }
     
-    .stage:hover::before {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
+    .stage-card.active {
+      background-color: #f8f9fa;
+      border: 2px solid #6c757d;
+      box-shadow: 0 4px 8px rgba(49, 51, 54, 0.2);
     }
     
-    .stage-title {
-      font-size: 14px;
-      margin-bottom: 5px;
-      color: #777;
+    .stage-card.active::after {
+      background-color: #6c757d;
+      height: 4px;
+    }
+    
+    .stage-card.disabled {
+      background-color: #f5f5f5;
+      cursor: not-allowed;
+      opacity: 0.7;
+      box-shadow: none;
+    }
+    
+    .stage-card.disabled:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: #ddd;
     }
     
     .stage-count {
       font-size: 24px;
       font-weight: bold;
-      color: #333;
     }
     
-    .stage.active {
-      background-color: #fafafa;
-      border: 2px solid #787a7d;
-      box-shadow: 0 4px 8px rgba(49, 51, 54, 0.2);
+    .stage-title {
+      color: #777;
     }
     
-    .stage.active::after {
-      background-color: #787a7d;
-      height: 4px;
+    .dropdown-menu {
+      width: 320px;
     }
     
-    /* Tab content */
-    .tab-content {
-      display: none;
+    .action-btn {
+      width: auto;
+      min-width: 180px;
+      max-width: 300px;
     }
     
-    .tab-content.active {
-      display: block;
-    }
-    
-    /* Responsive */
     @media (max-width: 768px) {
-      .stages {
-        flex-direction: column;
-      }
-      
-      .panels-container {
-        flex-direction: column;
-      }
-      
-      .dynamic-panel, .management-panel {
+      .action-btn {
         width: 100%;
+        max-width: none;
       }
-      
-      .entry-point-content {
-        flex-direction: column;
-      }
-      
-      .url-input-group, .action-button {
-        width: 100%;
-      }
-    }
-
-    .header > div {
-      max-width: 1200px;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 20px;
     }
   </style>
 </head>
 <body>
   <!-- Header -->
-  <header class="header">
-    <div>
-      <h1>Campaigns > Remote Worker in Switzerland</h1>
-      <button class="back-button">Back</button>
+  <header class="header py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <h1 class="h5 mb-0">Campaigns &gt; Remote Worker in Switzerland</h1>
+      <div class="d-flex gap-2 align-items-center">
+        <button class="btn btn-outline-secondary btn-sm">Back</button>
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary btn-sm" type="button" id="settingsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-gear"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-end p-3 shadow" aria-labelledby="settingsDropdown">
+            <!-- Share Campaign Section -->
+            <div class="mb-3 pb-3 border-bottom">
+              <h6 class="dropdown-header px-0 fw-bold">Share campaign</h6>
+              <div class="input-group mb-2">
+                <input type="text" class="form-control form-control-sm" value="https://airing.ch/job/dwf4ev35o6" id="shareUrl" onclick="this.select()">
+                <button class="btn btn-outline-secondary btn-sm" type="button" onclick="copyToClipboard()">
+                  <i class="bi bi-clipboard"></i>
+                </button>
+                <button class="btn btn-outline-secondary btn-sm" type="button" onclick="window.open('https://airing.ch/job/dwf4ev35o6', '_blank')">
+                  <i class="bi bi-box-arrow-up-right"></i>
+                </button>
+              </div>
+              <button class="btn btn-outline-secondary btn-sm w-100">
+                <i class="bi bi-envelope"></i> Email Campaign to Candidate
+              </button>
+            </div>
+            
+            <!-- Campaign Management Section -->
+            <div>
+              <h6 class="dropdown-header px-0 fw-bold">Campaign Management</h6>
+              <div class="d-grid gap-2">
+                <button class="btn btn-outline-secondary btn-sm">
+                  <i class="bi bi-gear"></i> Campaign Settings
+                </button>
+                <button class="btn btn-outline-secondary btn-sm">
+                  <i class="bi bi-download"></i> Export Campaign Data
+                </button>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-outline-secondary btn-sm flex-grow-1">
+                    <i class="bi bi-archive"></i> Archive
+                  </button>
+                  <button class="btn btn-outline-secondary btn-sm flex-grow-1">
+                    <i class="bi bi-trash"></i> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
   
-  <div class="container">
-    <!-- Entry Point Panel (renamed to Share campaign) -->
-    <div class="entry-point-panel">
-      <h3 class="entry-point-title">Share campaign</h3>
-      <div class="entry-point-content">
-        <!-- Left side: URL input group -->
-        <div class="url-input-group">
-          <input type="text" class="url-input" value="https://airing.ch/job/dwf4ev35o6" onclick="this.focus(); this.select();">
-          <button class="url-button" onclick="copyToClipboard()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-            </svg>
-          </button>
-          <button class="url-button" onclick="window.open('https://airing.ch/job/dwf4ev35o6', '_blank')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-              <polyline points="15 3 21 3 21 9"></polyline>
-              <line x1="10" y1="14" x2="21" y2="3"></line>
-            </svg>
-          </button>
-        </div>
-        
-        <!-- Right side: Email campaign button (vertically centered) -->
-        <button class="action-button" style="margin-bottom: 0; width: auto;">✉ Email Campaign to Candidate</button>
-      </div>
-    </div>
-    
-    <!-- Combined Campaign Action section -->
-    <div class="main-panel">
-      <div class="panel-header">
-        Campaign Action
+  <div class="container py-4">
+    <!-- Main Campaign Action panel -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header bg-light">
+        <h5 class="mb-0">Campaign Action</h5>
       </div>
       
-      <!-- Improved Stages (moved inside the main panel) -->
-      <div class="stages">
-        <div class="stage active" onclick="switchTab('receiving-cvs')">
-          <div class="stage-title">Receiving CVs</div>
-          <div class="stage-count">3</div>
-        </div>
-        
-        <div class="stage in-progress" onclick="switchTab('tests-evaluated')">
-          <div class="stage-title">Tests Evaluated</div>
-          <div class="stage-count">1</div>
-        </div>
-        
-        <div class="stage" onclick="switchTab('video-interview')">
-          <div class="stage-title">Video Interview</div>
-          <div class="stage-count">0</div>
-        </div>
-        
-        <div class="stage" onclick="switchTab('selected-for-onsite')">
-          <div class="stage-title">Selected for Onsite</div>
-          <div class="stage-count">0</div>
-        </div>
-        
-        <div class="stage" onclick="switchTab('onsite-interview')">
-          <div class="stage-title">Onsite Interview</div>
-          <div class="stage-count">0</div>
-        </div>
-        
-        <div class="stage" onclick="switchTab('recruited')">
-          <div class="stage-title">Recruited</div>
-          <div class="stage-count">0</div>
+      <!-- Stages -->
+      <div class="card-body pb-0">
+        <div class="row g-3 mb-4">
+          <!-- Stage 1 -->
+          <div class="col-md-2">
+            <div class="card h-100 stage-card active" onclick="switchTab('receiving-cvs')" data-count="3">
+              <div class="card-body text-center d-flex flex-column justify-content-center p-2">
+                <div class="stage-title">Receiving CVs</div>
+                <div class="stage-count">3</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Stage 2 -->
+          <div class="col-md-2">
+            <div class="card h-100 stage-card" onclick="switchTab('tests-evaluated')" data-count="1">
+              <div class="card-body text-center d-flex flex-column justify-content-center p-2">
+                <div class="stage-title">Tests Evaluated</div>
+                <div class="stage-count">1</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Stage 3 -->
+          <div class="col-md-2">
+            <div class="card h-100 stage-card disabled" data-count="0">
+              <div class="card-body text-center d-flex flex-column justify-content-center p-2">
+                <div class="stage-title">Video Interview</div>
+                <div class="stage-count">0</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Stage 4 -->
+          <div class="col-md-2">
+            <div class="card h-100 stage-card disabled" data-count="0">
+              <div class="card-body text-center d-flex flex-column justify-content-center p-2">
+                <div class="stage-title">Selected for Onsite</div>
+                <div class="stage-count">0</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Stage 5 -->
+          <div class="col-md-2">
+            <div class="card h-100 stage-card disabled" data-count="0">
+              <div class="card-body text-center d-flex flex-column justify-content-center p-2">
+                <div class="stage-title">Onsite Interview</div>
+                <div class="stage-count">0</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Stage 6 -->
+          <div class="col-md-2">
+            <div class="card h-100 stage-card disabled" data-count="0">
+              <div class="card-body text-center d-flex flex-column justify-content-center p-2">
+                <div class="stage-title">Recruited</div>
+                <div class="stage-count">0</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       
-      <div class="panels-container">
-        <!-- Dynamic Content Area - Left 70% -->
-        <div class="dynamic-panel">
-          <!-- Receiving CVs Tab (default active) -->
-          <div id="receiving-cvs" class="tab-content active">
-            <h3 class="panel-title">Actions</h3>
-            <button class="action-button">🗎 Select CVs</button>
-            <button class="action-button">✓ Customize Questions</button>
-          </div>
-          
-          <!-- Tests Evaluated Tab -->
-          <div id="tests-evaluated" class="tab-content">
-            <h3 class="panel-title">Actions</h3>
-            <button class="action-button">👁 Shortlist Candidates</button>
-            <button class="action-button">✉ Email Instructions</button>
-          </div>
-          
-          <!-- Video Interview Tab -->
-          <div id="video-interview" class="tab-content">
-            <h3 class="panel-title">Actions</h3>
-            <button class="action-button">👤 Select Candidates</button>
-          </div>
-          
-          <!-- Selected for Onsite Tab -->
-          <div id="selected-for-onsite" class="tab-content">
-            <h3 class="panel-title">Actions</h3>
-            <button class="action-button">👁 View Selected</button>
-            <button class="action-button">✉ Email Instructions</button>
-          </div>
-          
-          <!-- Onsite Interview Tab -->
-          <div id="onsite-interview" class="tab-content">
-            <h3 class="panel-title">Actions</h3>
-            <button class="action-button">✎ Annotate Candidates</button>
-            <button class="action-button">✉ Email Instructions</button>
-          </div>
-          
-          <!-- Recruited Tab -->
-          <div id="recruited" class="tab-content">
-            <h3 class="panel-title">Actions</h3>
-            <button class="action-button">👁 View Recruited</button>
-          </div>
-        </div>
-        
-        <!-- Campaign Management - Right 30% (static) -->
-        <div class="management-panel">
-          <h3 class="panel-title">Campaign Management</h3>
-          <button class="action-button">⚙ Campaign Settings</button>
-          <button class="action-button">⬇ Export Campaign Data</button>
-          
-          <div class="button-row">
-            <button class="action-button">🗄 Archive</button>
-            <button class="action-button">🗑 Delete</button>
+      <!-- Dynamic Content Area -->
+      <div class="card-body pt-0">
+        <div class="card bg-light">
+          <div class="card-body">
+            <!-- Receiving CVs Tab (default active) -->
+            <div id="receiving-cvs" class="tab-content active">
+              <h6 class="card-title mb-3">Actions</h6>
+              <div class="d-flex flex-column align-items-center">
+                <button class="btn btn-outline-secondary mb-2 action-btn">
+                  <i class="bi bi-file-earmark"></i> Select CVs
+                </button>
+                <button class="btn btn-outline-secondary action-btn">
+                  <i class="bi bi-check2"></i> Customize Questions
+                </button>
+              </div>
+            </div>
+            
+            <!-- Tests Evaluated Tab -->
+            <div id="tests-evaluated" class="tab-content d-none">
+              <h6 class="card-title mb-3">Actions</h6>
+              <div class="d-flex flex-column align-items-center">
+                <button class="btn btn-outline-secondary mb-2 action-btn">
+                  <i class="bi bi-eye"></i> Shortlist Candidates
+                </button>
+                <button class="btn btn-outline-secondary action-btn">
+                  <i class="bi bi-envelope"></i> Email Instructions
+                </button>
+              </div>
+            </div>
+            
+            <!-- Video Interview Tab -->
+            <div id="video-interview" class="tab-content d-none">
+              <h6 class="card-title mb-3">Actions</h6>
+              <div class="d-flex flex-column align-items-center">
+                <button class="btn btn-outline-secondary action-btn">
+                  <i class="bi bi-person"></i> Select Candidates
+                </button>
+              </div>
+            </div>
+            
+            <!-- Selected for Onsite Tab -->
+            <div id="selected-for-onsite" class="tab-content d-none">
+              <h6 class="card-title mb-3">Actions</h6>
+              <div class="d-flex flex-column align-items-center">
+                <button class="btn btn-outline-secondary mb-2 action-btn">
+                  <i class="bi bi-eye"></i> View Selected
+                </button>
+                <button class="btn btn-outline-secondary action-btn">
+                  <i class="bi bi-envelope"></i> Email Instructions
+                </button>
+              </div>
+            </div>
+            
+            <!-- Onsite Interview Tab -->
+            <div id="onsite-interview" class="tab-content d-none">
+              <h6 class="card-title mb-3">Actions</h6>
+              <div class="d-flex flex-column align-items-center">
+                <button class="btn btn-outline-secondary mb-2 action-btn">
+                  <i class="bi bi-pencil"></i> Annotate Candidates
+                </button>
+                <button class="btn btn-outline-secondary action-btn">
+                  <i class="bi bi-envelope"></i> Email Instructions
+                </button>
+              </div>
+            </div>
+            
+            <!-- Recruited Tab -->
+            <div id="recruited" class="tab-content d-none">
+              <h6 class="card-title mb-3">Actions</h6>
+              <div class="d-flex flex-column align-items-center">
+                <button class="btn btn-outline-secondary action-btn">
+                  <i class="bi bi-eye"></i> View Recruited
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Bootstrap 5 JS Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  
   <script>
     function switchTab(tabId) {
+      // Only allow switching to tabs that aren't disabled
+      const clickedStage = event.currentTarget;
+      if (clickedStage.classList.contains('disabled')) {
+        return; // Do nothing for disabled tabs
+      }
+      
       // Hide all tab contents
       const tabContents = document.querySelectorAll('.tab-content');
       tabContents.forEach(tab => {
+        tab.classList.add('d-none');
         tab.classList.remove('active');
       });
       
       // Show the selected tab content
-      document.getElementById(tabId).classList.add('active');
+      const selectedTab = document.getElementById(tabId);
+      selectedTab.classList.remove('d-none');
+      selectedTab.classList.add('active');
       
       // Update active state in tabs
-      const stages = document.querySelectorAll('.stage');
+      const stages = document.querySelectorAll('.stage-card');
       stages.forEach(stage => {
         stage.classList.remove('active');
       });
       
       // Add active class to clicked tab
-      event.currentTarget.classList.add('active');
+      clickedStage.classList.add('active');
     }
     
     function copyToClipboard() {
-      const urlInput = document.querySelector('.url-input');
+      const urlInput = document.getElementById('shareUrl');
       urlInput.select();
       document.execCommand('copy');
       
-      // Optional: Show feedback that URL was copied
+      // Show feedback using Bootstrap toast (optional)
       alert('URL copied to clipboard!');
     }
+    
+    // Initialize the stages based on count
+    document.addEventListener('DOMContentLoaded', function() {
+      const stages = document.querySelectorAll('.stage-card');
+      
+      stages.forEach(stage => {
+        const count = parseInt(stage.getAttribute('data-count'));
+        if (count === 0) {
+          stage.classList.add('disabled');
+        }
+      });
+    });
   </script>
 </body>
 </html>
