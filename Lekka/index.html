@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <div id="game-container">
@@ -21,8 +23,8 @@
             <div id="line2"></div>
             <div id="line3"></div>
             <div id="line4"></div>
-            <div id="final-grand-total"></div>
         </div>
+        <div id="final-grand-total"></div>
         <div id="input-area">
             <input type="number" id="grand-total" placeholder="Enter the grand total">
             <button id="submit-btn">Submit</button>
@@ -30,5 +32,12 @@
         <div id="message-area"></div>
     </div>
     <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
 </body>
 </html>

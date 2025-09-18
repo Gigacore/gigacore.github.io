@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const timerText = document.getElementById('timer-text');
     const timerBar = document.getElementById('timer-bar');
+    const problemsDiv = document.getElementById('problems');
     const line1 = document.getElementById('line1');
     const line2 = document.getElementById('line2');
     const line3 = document.getElementById('line3');
@@ -78,12 +79,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
+    function triggerConfetti() {
+        const duration = 2 * 1000;
+        const animationEnd = Date.now() + duration;
+        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        const interval = setInterval(function() {
+            const timeLeft = animationEnd - Date.now();
+
+            if (timeLeft <= 0) {
+                return clearInterval(interval);
+            }
+
+            const particleCount = 50 * (timeLeft / duration);
+            // since particles fall down, start a bit higher than random
+            confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+            confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+        }, 250);
+    }
+
     function endGame() {
         clearInterval(timer);
         grandTotalInput.disabled = true;
         submitBtn.textContent = 'Start Again';
         submitBtn.disabled = false;
-        messageArea.textContent = 'Time\'s up!';
+        timerText.textContent = "Time's up!";
         showResults();
     }
 
@@ -95,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const finalGrandTotal = document.getElementById('final-grand-total');
         finalGrandTotal.textContent = `Grand Total: ${totals.grandTotal}`;
+        finalGrandTotal.style.display = 'block';
     }
 
     function resetGame() {
@@ -114,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         submitBtn.textContent = 'Submit';
         
-        document.getElementById('final-grand-total').textContent = '';
+        document.getElementById('final-grand-total').style.display = 'none';
         
         startTimer();
     }
@@ -137,11 +162,19 @@ document.addEventListener('DOMContentLoaded', () => {
             messageArea.textContent = 'Congratulations! You got it right!';
             messageArea.className = 'correct';
             grandTotalInput.disabled = true;
-            submitBtn.disabled = true;
+            submitBtn.textContent = 'Start Again';
+            submitBtn.disabled = false;
             showResults();
+            triggerConfetti();
         } else {
             messageArea.textContent = 'Incorrect, please try again.';
             messageArea.className = 'incorrect';
+            problemsDiv.classList.add('shake');
+            grandTotalInput.classList.add('shake');
+            setTimeout(() => {
+                problemsDiv.classList.remove('shake');
+                grandTotalInput.classList.remove('shake');
+            }, 500);
         }
     });
 

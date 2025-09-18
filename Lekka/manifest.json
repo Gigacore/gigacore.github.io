@@ -1,0 +1,14 @@
+{
+    "name": "Lekka",
+    "short_name": "Lekka",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#2c3e50",
+    "theme_color": "#2c3e50",
+    "description": "A simple math game.",
+    "icons": [{
+        "src": "icon/lekka.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }]
+}
