@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageArea = document.getElementById('message-area');
 
     let timer;
-    const totalTime = 60;
+    const totalTime = 90;
     let timeLeft = totalTime;
     let totals = {};
 
